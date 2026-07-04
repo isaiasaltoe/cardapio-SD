@@ -4,7 +4,7 @@ services:
     environment:
         POSTGRES_USER: postgres 
         POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} 
-        POSTGRES_BD: backend_development
+        POSTGRES_DB: backend_development
     ports:
       - "5432:5432"
     volumes:

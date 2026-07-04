@@ -16,6 +16,9 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     @item = Item.new(item_params)
+    teste = 2
+    @item.admin_id = teste
+    teste = teste+1
 
     if @item.save
       render json: @item, status: :created, location: @item
@@ -46,6 +49,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.expect(item: [ :name, :description, :value ])
+      params.expect(item: [ :name, :description, :value, :category_id ])
     end
 end
