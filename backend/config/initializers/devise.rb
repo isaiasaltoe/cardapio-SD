@@ -162,6 +162,16 @@ Devise.setup do |config|
   # not when the unconfirmed email is confirmed.
   config.reconfirmable = true
 
+  config.jwt do |jwt|
+    jwt.secret = ENV.fetch('DEVISE_JWT_SECRET_KEY', 'test_jwt_secret_key_for_development')
+    jwt.dispatch_requests = [
+      [ "POST", %r{^/admins/sign_in$} ]
+    ]
+    jwt.revocation_requests = [
+      [ "DELETE", %r{^/admins/sign_out$} ]
+    ]
+    jwt.expiration_time = 1.day.to_i
+  end
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]
 
@@ -266,7 +276,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete

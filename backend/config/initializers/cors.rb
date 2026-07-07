@@ -5,12 +5,13 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
-#   allow do
-#     origins "*"
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins "*" # em produção, especifique o domínio do frontend
 
-#     resource "*",
-#       headers: :any,
-#       methods: [ :get, :post, :put, :patch, :delete, :options, :head ]
-#   end
-# end
+    resource "*",
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
+      expose: ["Authorization"] # permite o frontend ler o token JWT
+  end
+end

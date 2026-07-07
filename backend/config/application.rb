@@ -16,6 +16,17 @@ module Backend
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    config.generators do |generator|
+      generator.test_framework :rspec, fixture: true
+      generator.fixture_replacement :factory_bot, dir: "spec/factories"
+      generator.view_specs false
+      generator.helper_specs false
+      generator.stylesheets = false
+      generator.javascripts = false
+      generator.helper = false
+    end
+    config.autoload_paths += %W[\#{config.root/lib}]
+    config.api_only = true
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -27,6 +38,5 @@ module Backend
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
   end
 end

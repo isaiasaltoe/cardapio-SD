@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_01_195002) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_07_224450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,29 +18,37 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_01_195002) do
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "jti", default: "", null: false
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["jti"], name: "index_admins_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
+    t.bigint "admin_id", null: false
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_categories_on_admin_id"
   end
 
   create_table "items", force: :cascade do |t|
+    t.bigint "admin_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.string "description"
     t.string "name"
     t.datetime "updated_at", null: false
-    t.integer "value"
+    t.decimal "value", precision: 5, scale: 2
+    t.index ["admin_id"], name: "index_items_on_admin_id"
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  add_foreign_key "categories", "admins"
+  add_foreign_key "items", "admins"
   add_foreign_key "items", "categories"
 end
