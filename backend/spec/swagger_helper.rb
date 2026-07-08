@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'rswag/specs'
 
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
@@ -22,10 +23,23 @@ RSpec.configure do |config|
         version: 'v1'
       },
       paths: {},
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: :http,
+            scheme: :bearer,
+            bearerFormat: 'JWT'
+          }
+        }
+      },
       servers: [
         {
-          url: 'http://localhost:3000',
-          description: 'development server'
+          url: 'https://{defaultHost}',
+          variables: {
+            defaultHost: {
+              default: 'www.example.com'
+            }
+          }
         }
       ]
     }

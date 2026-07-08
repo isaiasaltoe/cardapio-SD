@@ -2857,3 +2857,54 @@ Processing by Api::V1::ItemsController#index as */*
 Completed 200 OK in 15ms (Views: 1.0ms | ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+  [1m[36mItem Load (1.4ms)[0m  [1m[34mSELECT "items".* FROM "items" /* loading for pp */ LIMIT 11 /*application='Backend'*/[0m
+Started POST "/api/v1/categories" for 172.18.0.1 at 2026-07-08 00:16:09 +0000
+Processing by Api::V1::CategoriesController#create as */*
+  Parameters: {"name" => "Frios", "category" => {"name" => "Frios"}}
+  [1m[36mAdmin Load (0.4ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = 88 ORDER BY "admins"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='categories'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='categories'*/[0m
+  ↳ app/controllers/concerns/api/v1/categories_controller.rb:22:in 'Api::V1::CategoriesController#create'
+  [1m[36mCategory Create (5.2ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES (88, '2026-07-08 00:16:09.483232', 'Frios', '2026-07-08 00:16:09.483232') RETURNING "id" /*action='create',application='Backend',controller='categories'*/[0m
+  ↳ app/controllers/concerns/api/v1/categories_controller.rb:22:in 'Api::V1::CategoriesController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='categories'*/[0m
+  ↳ app/controllers/concerns/api/v1/categories_controller.rb:22:in 'Api::V1::CategoriesController#create'
+Completed 201 Created in 31ms (Views: 0.4ms | ActiveRecord: 8.3ms (2 queries, 0 cached) | GC: 1.7ms)
+
+
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."id" DESC LIMIT 1 /*application='Backend'*/[0m
+Started POST "/api/v1/items" for 172.18.0.1 at 2026-07-08 00:17:24 +0000
+Processing by Api::V1::ItemsController#create as */*
+  Parameters: {"name" => "Salame", "category_id" => 57, "description" => "salame :OO", "item" => {"category_id" => 57, "description" => "salame :OO", "name" => "Salame"}}
+  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = 88 ORDER BY "admins"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='items'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='items'*/[0m
+  ↳ app/controllers/concerns/api/v1/items_controller.rb:22:in 'Api::V1::ItemsController#create'
+  [1m[36mCategory Load (2.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 57 LIMIT 1 /*action='create',application='Backend',controller='items'*/[0m
+  ↳ app/controllers/concerns/api/v1/items_controller.rb:22:in 'Api::V1::ItemsController#create'
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("admin_id", "category_id", "created_at", "description", "name", "updated_at", "value") VALUES (88, 57, '2026-07-08 00:17:24.826442', 'salame :OO', 'Salame', '2026-07-08 00:17:24.826442', NULL) RETURNING "id" /*action='create',application='Backend',controller='items'*/[0m
+  ↳ app/controllers/concerns/api/v1/items_controller.rb:22:in 'Api::V1::ItemsController#create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='items'*/[0m
+  ↳ app/controllers/concerns/api/v1/items_controller.rb:22:in 'Api::V1::ItemsController#create'
+Completed 201 Created in 32ms (Views: 1.0ms | ActiveRecord: 4.3ms (3 queries, 0 cached) | GC: 1.6ms)
+
+
+  [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" ORDER BY "items"."id" DESC LIMIT 1 /*application='Backend'*/[0m
+Started GET "/api/v1/items" for 172.18.0.1 at 2026-07-08 00:20:47 +0000
+Processing by Api::V1::ItemsController#index as HTML
+Completed 401 Unauthorized in 19ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.0ms)
+
+
+Started GET "/api-docs/" for 172.18.0.1 at 2026-07-08 00:22:44 +0000
+Started GET "/api-docs/index.html" for 172.18.0.1 at 2026-07-08 00:22:44 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.18.0.1 at 2026-07-08 00:22:44 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.18.0.1 at 2026-07-08 00:22:44 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.18.0.1 at 2026-07-08 00:22:44 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.18.0.1 at 2026-07-08 00:22:44 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/api-docs/v1/swagger.yaml"):
+  
+Started GET "/api-docs/index.html" for 172.18.0.1 at 2026-07-08 00:48:36 +0000
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 172.18.0.1 at 2026-07-08 00:48:36 +0000
+Started GET "/api-docs/swagger-ui-bundle.js" for 172.18.0.1 at 2026-07-08 00:48:36 +0000
+Started GET "/api-docs/swagger-ui.css" for 172.18.0.1 at 2026-07-08 00:48:36 +0000
+Started GET "/api-docs/v1/swagger.yaml" for 172.18.0.1 at 2026-07-08 00:48:36 +0000
+Started GET "/api-docs/favicon-32x32.png" for 172.18.0.1 at 2026-07-08 00:48:36 +0000

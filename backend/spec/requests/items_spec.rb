@@ -1,109 +1,128 @@
-require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe "/api/v1/items", type: :request do
-  let(:admin) { create(:admin) }
-  let(:category) { create(:category, admin: admin) }
-  let(:headers) { auth_headers(admin) }
+RSpec.describe 'API V1 Items', type: :request do
+  path '/api/v1/items' do
+    get('List items') do
+      tags 'Items'
+      produces 'application/json'
+      security [bearerAuth: []]
 
-  let(:valid_attributes) do
-    { name: "Batata Frita", description: "Porção crocante", value: 13.50, category_id: category.id }
-  end
+      response(200, 'successful') do
+        let(:admin) { create(:admin) }
+        let(:category) { create(:category, admin: admin) }
+        let(:Authorization) { auth_headers(admin)['Authorization'] }
 
-  let(:invalid_attributes) do
-    { name: "", description: nil, value: 10.0 }
-  end
+        before do
+          create(:item, admin: admin, category: category)
+        end
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      create(:item, admin: admin, category: category)
-      get api_v1_items_url, headers: headers, as: :json
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      item = create(:item, admin: admin, category: category)
-      get api_v1_item_url(item), headers: headers, as: :json
-      expect(response).to be_successful
-    end
-  end
-
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Item" do
-        expect {
-          post api_v1_items_url,
-               params: { item: valid_attributes }, headers: headers, as: :json
-        }.to change(Item, :count).by(1)
-      end
-
-      it "renders a JSON response with the new item" do
-        post api_v1_items_url,
-             params: { item: valid_attributes }, headers: headers, as: :json
-        expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        run_test!
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Item" do
-        expect {
-          post api_v1_items_url,
-               params: { item: invalid_attributes }, headers: headers, as: :json
-        }.to change(Item, :count).by(0)
+    post('Create item') do
+      tags 'Items'
+      consumes 'application/json'
+      produces 'application/json'
+      security [bearerAuth: []]
+
+      parameter name: :item_params, in: :body, schema: {
+        type: :object,
+        properties: {
+          item: {
+            type: :object,
+            properties: {
+              name: { type: :string },
+              description: { type: :string },
+              value: { type: :number, format: :float },
+              category_id: { type: :integer }
+            },
+            required: ['name', 'description']
+          }
+        },
+        required: ['item']
+      }
+
+      response(201, 'created') do
+        let(:admin) { create(:admin) }
+        let(:category) { create(:category, admin: admin) }
+        let(:Authorization) { auth_headers(admin)['Authorization'] }
+        let(:item_params) do
+          { item: { name: 'Batata Frita', description: 'Porção crocante', value: 13.50, category_id: category.id } }
+        end
+        run_test!
       end
 
-      it "renders a JSON response with errors for the new item" do
-        post api_v1_items_url,
-             params: { item: invalid_attributes }, headers: headers, as: :json
-        expect(response).to have_http_status(:unprocessable_content)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) do
-        { name: "Batata Frita Especial", value: 18.90 }
-      end
-
-      it "updates the requested item" do
-        item = create(:item, admin: admin, category: category)
-        patch api_v1_item_url(item),
-              params: { item: new_attributes }, headers: headers, as: :json
-        item.reload
-        expect(item.name).to eq("Batata Frita Especial")
-        expect(item.value).to eq(18.90)
-      end
-
-      it "renders a JSON response with the item" do
-        item = create(:item, admin: admin, category: category)
-        patch api_v1_item_url(item),
-              params: { item: new_attributes }, headers: headers, as: :json
-        expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the item" do
-        item = create(:item, admin: admin, category: category)
-        patch api_v1_item_url(item),
-              params: { item: invalid_attributes }, headers: headers, as: :json
-        expect(response).to have_http_status(:unprocessable_content)
-        expect(response.content_type).to match(a_string_including("application/json"))
+      response(422, 'unprocessable content') do
+        let(:admin) { create(:admin) }
+        let(:Authorization) { auth_headers(admin)['Authorization'] }
+        let(:item_params) { { item: { name: '' } } }
+        run_test!
       end
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested item" do
-      item = create(:item, admin: admin, category: category)
-      expect {
-        delete api_v1_item_url(item), headers: headers, as: :json
-      }.to change(Item, :count).by(-1)
+  path '/api/v1/items/{id}' do
+    parameter name: :id, in: :path, type: :integer, required: true
+
+    get('Show item') do
+      tags 'Items'
+      produces 'application/json'
+      security [bearerAuth: []]
+
+      response(200, 'successful') do
+        let(:admin) { create(:admin) }
+        let(:category) { create(:category, admin: admin) }
+        let(:Authorization) { auth_headers(admin)['Authorization'] }
+        let(:item) { create(:item, admin: admin, category: category) }
+        let(:id) { item.id }
+        run_test!
+      end
+    end
+
+    patch('Update item') do
+      tags 'Items'
+      consumes 'application/json'
+      produces 'application/json'
+      security [bearerAuth: []]
+
+      parameter name: :item_params, in: :body, schema: {
+        type: :object,
+        properties: {
+          item: {
+            type: :object,
+            properties: {
+              name: { type: :string },
+              value: { type: :number, format: :float }
+            }
+          }
+        }
+      }
+
+      response(200, 'successful') do
+        let(:admin) { create(:admin) }
+        let(:category) { create(:category, admin: admin) }
+        let(:Authorization) { auth_headers(admin)['Authorization'] }
+        let(:item) { create(:item, admin: admin, category: category) }
+        let(:id) { item.id }
+        let(:item_params) { { item: { name: 'Batata Frita Especial', value: 18.90 } } }
+        run_test!
+      end
+    end
+
+    delete('Delete item') do
+      tags 'Items'
+      produces 'application/json'
+      security [bearerAuth: []]
+
+      response(204, 'no content') do
+        let(:admin) { create(:admin) }
+        let(:category) { create(:category, admin: admin) }
+        let(:Authorization) { auth_headers(admin)['Authorization'] }
+        let(:item) { create(:item, admin: admin, category: category) }
+        let(:id) { item.id }
+        run_test!
+      end
     end
   end
 end

@@ -1,0 +1,207 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/categories":
+    get:
+      summary: List categories
+      tags:
+      - Categories
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    admin_id:
+                      type: integer
+    post:
+      summary: Create category
+      tags:
+      - Categories
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: created
+        '422':
+          description: unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                  required:
+                  - name
+              required:
+              - category
+  "/api/v1/categories/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Show category
+      tags:
+      - Categories
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: Update category
+      tags:
+      - Categories
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+    delete:
+      summary: Delete category
+      tags:
+      - Categories
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: no content
+  "/api/v1/items":
+    get:
+      summary: List items
+      tags:
+      - Items
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create item
+      tags:
+      - Items
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: created
+        '422':
+          description: unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    value:
+                      type: number
+                      format: float
+                    category_id:
+                      type: integer
+                  required:
+                  - name
+                  - description
+              required:
+              - item
+  "/api/v1/items/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Show item
+      tags:
+      - Items
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: Update item
+      tags:
+      - Items
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: number
+                      format: float
+    delete:
+      summary: Delete item
+      tags:
+      - Items
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: no content
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
