@@ -18,7 +18,7 @@ Componentes:
 Para obter uma cópia local deste repositório, execute os seguintes comandos no terminal:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/trabalho-SD.git
+git clone https://github.com/isaiasaltoe/trabalho-SD.git
 cd trabalho-SD
 ```
 
