@@ -1,0 +1,28 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: cardapio
+spec:
+  replicas: 1 # SEM PROTEÃ‡Ã•ES (Rodada 1)
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: backend:latest # Imagem buildada localmente
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: backend-config
+            - secretRef:
+                name: backend-secrets
+          # SEM READINESS/LIVENESS PROBES (Rodada 1)
+          # SEM LIMITES DE RECURSOS (Rodada 1)
