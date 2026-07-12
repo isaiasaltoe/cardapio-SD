@@ -60,3 +60,5 @@ end
 group :test do
   gem "simplecov", require: false
 end
+
+gem "active_storage_validations", "~> 3.0"
