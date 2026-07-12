@@ -1,0 +1,18 @@
+﻿apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-delay-api
+  namespace: cardapio
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - cardapio
+    labelSelectors:
+      app: api
+  delay:
+    latency: "500ms"
+    correlation: "100"
+    jitter: "0ms"
+  duration: "60s"
