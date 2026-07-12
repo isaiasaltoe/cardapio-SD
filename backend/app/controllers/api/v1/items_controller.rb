@@ -48,6 +48,6 @@ class Api::V1::ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.expect(item: [ :name, :description, :value, :category_id ])
+      params.expect(item: [ :name, :description, :value, :category_id, :photo ])
     end
 end
