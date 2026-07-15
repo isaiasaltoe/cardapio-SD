@@ -1,14 +1,14 @@
 :root {
-  --bg: #0f1117;
-  --panel: #1a1d27;
-  --panel-2: #222634;
-  --border: #2c3140;
-  --text: #e7e9ee;
-  --muted: #9aa1b1;
-  --accent: #f2792b;
-  --accent-hover: #d9691f;
-  --danger: #e05252;
-  --ok: #3ecf8e;
+  --bg: #f9fafb;
+  --panel: #ffffff;
+  --panel-2: #f3f4f6;
+  --border: #e5e7eb;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --danger: #ef4444;
+  --ok: #10b981;
 }
 
 * {
@@ -100,6 +100,43 @@ h2 {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.public-item-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.public-item-photo {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.public-item-photo-placeholder {
+  width: 100%;
+  height: 180px;
+  background-color: var(--panel-2);
+}
+
+.public-item-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.public-item-price {
+  color: var(--accent);
+  font-size: 1.2rem;
 }
 
 /* ---------- Forms ---------- */

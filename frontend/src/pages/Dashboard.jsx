@@ -23,7 +23,11 @@ export default function Dashboard() {
     description: "",
     value: "",
     category_id: "",
+    photo: null,
   });
+
+  const [activeTab, setActiveTab] = useState("items");
+  const [editandoItemId, setEditandoItemId] = useState(null);
 
   // ---------------------------------------------------------------------------
   // FASE 2 (protegida) - carregamento com retry (no axios) + cache local.
@@ -80,20 +84,37 @@ export default function Dashboard() {
     if (!item.name.trim()) return;
     setErroAcao("");
     try {
-      await api.post("/api/v1/items", {
-        item: {
-          name: item.name,
-          description: item.description,
-          value: parseFloat(item.value) || 0,
-          category_id: item.category_id || null,
-        },
-      });
-      setItem({ name: "", description: "", value: "", category_id: "" });
+      const formData = new FormData();
+      formData.append("item[name]", item.name);
+      formData.append("item[description]", item.description);
+      formData.append("item[value]", parseFloat(item.value) || 0);
+      if (item.category_id) formData.append("item[category_id]", item.category_id);
+      if (item.photo) formData.append("item[photo]", item.photo);
+
+      if (editandoItemId) {
+        await api.put(`/api/v1/items/${editandoItemId}`, formData);
+      } else {
+        await api.post("/api/v1/items", formData);
+      }
+
+      setItem({ name: "", description: "", value: "", category_id: "", photo: null });
+      setEditandoItemId(null);
       await carregarTudo({ silent: true });
     } catch {
-      setErroAcao("Falha ao criar item. Confira os campos e tente novamente.");
+      setErroAcao("Falha ao salvar item. Confira os campos e tente novamente.");
     }
   });
+
+  function iniciarEdicaoItem(it) {
+    setItem({
+      name: it.name || "",
+      description: it.description || "",
+      value: it.value || "",
+      category_id: it.category_id || "",
+      photo: null
+    });
+    setEditandoItemId(it.id);
+  }
 
   async function excluir(tipo, id) {
     if (excluindoId) return; // ja tem uma exclusao em andamento
@@ -122,8 +143,11 @@ export default function Dashboard() {
           <span className="muted"> - {admin?.email}</span>
         </div>
         <div className="topbar-actions">
-          <button className="ghost" onClick={() => carregarTudo()}>
-            Recarregar
+          <button className={activeTab === "items" ? "" : "ghost"} onClick={() => setActiveTab("items")}>
+            Itens
+          </button>
+          <button className={activeTab === "categories" ? "" : "ghost"} onClick={() => setActiveTab("categories")}>
+            Categorias
           </button>
           <button className="ghost" onClick={logout}>
             Sair
@@ -158,135 +182,170 @@ export default function Dashboard() {
         ) : erroTotal ? (
           <ErrorFallback onRetry={() => carregarTudo()} />
         ) : (
-          <div className="grid">
+          <div className="grid" style={{ gridTemplateColumns: '1fr' }}>
             {/* -------------------- CATEGORIAS -------------------- */}
-            <section className="card">
-              <h2>Categorias</h2>
+            {activeTab === "categories" && (
+              <section className="card">
+                <h2>Categorias</h2>
 
-              <form
-                className="inline-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  criarCategoria();
-                }}
-              >
-                <input
-                  value={novaCategoria}
-                  onChange={(e) => setNovaCategoria(e.target.value)}
-                  placeholder="Nome da categoria"
-                />
-                <button type="submit" disabled={criandoCategoria}>
-                  {criandoCategoria ? "Enviando..." : "Adicionar"}
-                </button>
-              </form>
+                <form
+                  className="inline-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    criarCategoria();
+                  }}
+                >
+                  <input
+                    value={novaCategoria}
+                    onChange={(e) => setNovaCategoria(e.target.value)}
+                    placeholder="Nome da categoria"
+                  />
+                  <button type="submit" disabled={criandoCategoria}>
+                    {criandoCategoria ? "Enviando..." : "Adicionar"}
+                  </button>
+                </form>
 
-              {categorias.length === 0 ? (
-                <p className="muted">Nenhuma categoria cadastrada.</p>
-              ) : (
-                <ul className="lista">
-                  {categorias.map((c) => (
-                    <li key={c.id}>
-                      <span>{c.name}</span>
-                      <button
-                        className="danger"
-                        disabled={excluindoId === `categories-${c.id}`}
-                        onClick={() => excluir("categories", c.id)}
-                      >
-                        {excluindoId === `categories-${c.id}` ? "..." : "Excluir"}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </section>
+                {categorias.length === 0 ? (
+                  <p className="muted">Nenhuma categoria cadastrada.</p>
+                ) : (
+                  <ul className="lista">
+                    {categorias.map((c) => (
+                      <li key={c.id}>
+                        <span>{c.name}</span>
+                        <button
+                          className="danger"
+                          disabled={excluindoId === `categories-${c.id}`}
+                          onClick={() => excluir("categories", c.id)}
+                        >
+                          {excluindoId === `categories-${c.id}` ? "..." : "Excluir"}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            )}
 
             {/* -------------------- ITENS -------------------- */}
-            <section className="card">
-              <h2>Itens do cardapio</h2>
+            {activeTab === "items" && (
+              <section className="card">
+                <h2>Itens do cardapio</h2>
 
-              <form
-                className="stack-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  criarItem();
-                }}
-              >
-                <input
-                  value={item.name}
-                  onChange={(e) => setItem({ ...item, name: e.target.value })}
-                  placeholder="Nome do item"
-                  required
-                />
-                <input
-                  value={item.description}
-                  onChange={(e) => setItem({ ...item, description: e.target.value })}
-                  placeholder="Descricao"
-                />
-                <input
-                  type="number"
-                  step="0.01"
-                  value={item.value}
-                  onChange={(e) => setItem({ ...item, value: e.target.value })}
-                  placeholder="Preco (ex: 29.90)"
-                />
-                <select
-                  value={item.category_id}
-                  onChange={(e) => setItem({ ...item, category_id: e.target.value })}
+                <form
+                  className="stack-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    criarItem();
+                  }}
                 >
-                  <option value="">Sem categoria</option>
-                  {categorias.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
-                <button type="submit" disabled={criandoItem}>
-                  {criandoItem ? "Enviando..." : "Adicionar item"}
-                </button>
-              </form>
-
-              {itens.length === 0 ? (
-                <p className="muted">Nenhum item cadastrado.</p>
-              ) : (
-                <table className="tabela">
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Categoria</th>
-                      <th>Preco</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {itens.map((it) => (
-                      <tr key={it.id}>
-                        <td>
-                          <strong>{it.name}</strong>
-                          {it.description && (
-                            <div className="muted small">{it.description}</div>
-                          )}
-                        </td>
-                        <td>{nomeCategoria(it.category_id)}</td>
-                        <td>
-                          {typeof it.value === "number"
-                            ? `R$ ${it.value.toFixed(2)}`
-                            : `R$ ${it.value}`}
-                        </td>
-                        <td>
-                          <button
-                            className="danger"
-                            disabled={excluindoId === `items-${it.id}`}
-                            onClick={() => excluir("items", it.id)}
-                          >
-                            {excluindoId === `items-${it.id}` ? "..." : "Excluir"}
-                          </button>
-                        </td>
-                      </tr>
+                  <input
+                    value={item.name}
+                    onChange={(e) => setItem({ ...item, name: e.target.value })}
+                    placeholder="Nome do item"
+                    required
+                  />
+                  <input
+                    value={item.description}
+                    onChange={(e) => setItem({ ...item, description: e.target.value })}
+                    placeholder="Descricao"
+                  />
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={item.value}
+                    onChange={(e) => setItem({ ...item, value: e.target.value })}
+                    placeholder="Preco (ex: 29.90)"
+                  />
+                  <select
+                    value={item.category_id}
+                    onChange={(e) => setItem({ ...item, category_id: e.target.value })}
+                  >
+                    <option value="">Sem categoria</option>
+                    {categorias.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name}
+                      </option>
                     ))}
-                  </tbody>
-                </table>
-              )}
-            </section>
+                  </select>
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    onChange={(e) => setItem({ ...item, photo: e.target.files[0] })}
+                  />
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button type="submit" disabled={criandoItem}>
+                      {criandoItem ? "Salvando..." : (editandoItemId ? "Atualizar item" : "Adicionar item")}
+                    </button>
+                    {editandoItemId && (
+                      <button type="button" className="ghost" onClick={() => {
+                        setEditandoItemId(null);
+                        setItem({ name: "", description: "", value: "", category_id: "", photo: null });
+                      }}>
+                        Cancelar
+                      </button>
+                    )}
+                  </div>
+                </form>
+
+                {itens.length === 0 ? (
+                  <p className="muted">Nenhum item cadastrado.</p>
+                ) : (
+                  <table className="tabela">
+                    <thead>
+                      <tr>
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Preco</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {itens.map((it) => (
+                        <tr key={it.id}>
+                          <td>
+                            {it.photo_url ? (
+                              <img src={it.photo_url} alt={it.name} style={{ width: "40px", height: "40px", objectFit: "cover", borderRadius: "4px" }} />
+                            ) : (
+                              <div style={{ width: "40px", height: "40px", backgroundColor: "#eee", borderRadius: "4px" }} />
+                            )}
+                          </td>
+                          <td>
+                            <strong>{it.name}</strong>
+                            {it.description && (
+                              <div className="muted small">{it.description}</div>
+                            )}
+                          </td>
+                          <td>{nomeCategoria(it.category_id)}</td>
+                          <td>
+                            {typeof it.value === "number"
+                              ? `R$ ${it.value.toFixed(2)}`
+                              : `R$ ${it.value}`}
+                          </td>
+                          <td>
+                            <div style={{ display: 'flex', gap: '8px' }}>
+                            <button
+                              className="ghost"
+                              onClick={() => iniciarEdicaoItem(it)}
+                            >
+                              Editar
+                            </button>
+                            <button
+                              className="danger"
+                              disabled={excluindoId === `items-${it.id}`}
+                              onClick={() => excluir("items", it.id)}
+                            >
+                              {excluindoId === `items-${it.id}` ? "..." : "Excluir"}
+                            </button>
+                          </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </section>
+            )}
           </div>
         )}
       </main>
