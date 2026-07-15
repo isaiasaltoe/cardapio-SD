@@ -246,3 +246,32 @@ button.danger:hover {
   padding: 12px;
   margin-bottom: 16px;
 }
+
+/* Campo de upload de foto (item) - estilizado no tema, esconde o input nativo */
+.file-field {
+  display: block;
+  cursor: pointer;
+}
+
+.file-field input[type="file"] {
+  display: none;
+}
+
+.file-label {
+  display: block;
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-field:hover .file-label {
+  border-color: var(--accent);
+  color: var(--text);
+}

@@ -19,11 +19,9 @@ export default function Login() {
       await login(email, password);
       navigate("/");
     } catch (err) {
-      // FASE 1 (vulneravel): tratamento de erro simples, sem retry nem fallback.
-      // Se a API estiver lenta/fora (Chaos), o usuario so ve a mensagem crua.
       const msg =
         err.response?.status === 401
-          ? "Email ou senha invalidos."
+          ? "Email ou senha inválidos."
           : "Falha ao autenticar. Verifique os dados ou o servidor.";
       setErro(msg);
     } finally {
@@ -34,8 +32,8 @@ export default function Login() {
   return (
     <div className="auth-wrap">
       <form className="card auth-card" onSubmit={handleSubmit}>
-        <h1>Cardapio Admin</h1>
-        <p className="muted">Entre para gerenciar o cardapio</p>
+        <h1>Cardápio Admin</h1>
+        <p className="muted">Entre para gerenciar o cardápio</p>
 
         <label>Email</label>
         <input
@@ -62,7 +60,7 @@ export default function Login() {
         </button>
 
         <p className="muted small" style={{ marginTop: 8 }}>
-          Contas de admin sao criadas pelo backend (seed/console).
+          Contas de admin são criadas pelo backend (seed/console).
         </p>
       </form>
     </div>

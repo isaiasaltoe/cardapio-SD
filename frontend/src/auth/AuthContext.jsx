@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
     // O devise-jwt manda o token no header Authorization ("Bearer xxx").
     const authHeader = res.headers["authorization"];
     if (!authHeader) {
-      throw new Error("Token nao retornado pelo servidor.");
+      throw new Error("Token não retornado pelo servidor.");
     }
 
     localStorage.setItem("token", authHeader);
@@ -28,8 +28,8 @@ export function AuthProvider({ children }) {
     setAdmin(res.data.admin);
   }
 
-  // Obs.: o backend NAO expõe cadastro via API (Admin sem :registerable).
-  // Admins sao criados por seed/console. Por isso o front so faz login.
+  // Obs.: o backend NÃO expõe cadastro via API (Admin sem :registerable).
+  // Admins são criados por seed/console. Por isso o front só faz login.
 
   async function logout() {
     try {

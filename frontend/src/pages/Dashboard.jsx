@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import api from "../api/client";
 import { useAuth } from "../auth/AuthContext";
 
@@ -10,23 +10,16 @@ export default function Dashboard() {
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
 
-  // Form de nova categoria
   const [novaCategoria, setNovaCategoria] = useState("");
-
-  // Form de novo item
   const [item, setItem] = useState({
     name: "",
     description: "",
     value: "",
     category_id: "",
   });
+  const [foto, setFoto] = useState(null);
+  const fotoInputRef = useRef(null);
 
-  // ---------------------------------------------------------------------------
-  // FASE 1 (vulneravel): carregamento cru.
-  //  - Sem skeleton screen (so um "Carregando...").
-  //  - Sem cache local de fallback: se a API cair, some tudo da tela.
-  //  - Sem retry: qualquer erro de rede ja vira mensagem de erro.
-  // ---------------------------------------------------------------------------
   async function carregarTudo() {
     setCarregando(true);
     setErro("");
@@ -38,7 +31,7 @@ export default function Dashboard() {
       setCategorias(catRes.data);
       setItens(itemRes.data);
     } catch (err) {
-      setErro("Nao foi possivel carregar os dados. O servidor respondeu com erro ou esta fora do ar.");
+      setErro("Não foi possível carregar os dados. O servidor respondeu com erro ou está fora do ar.");
     } finally {
       setCarregando(false);
     }
@@ -74,15 +67,17 @@ export default function Dashboard() {
   async function criarItem(e) {
     e.preventDefault();
     try {
-      await api.post("/api/v1/items", {
-        item: {
-          name: item.name,
-          description: item.description,
-          value: parseFloat(item.value) || 0,
-          category_id: item.category_id || null,
-        },
-      });
+      const form = new FormData();
+      form.append("item[name]", item.name);
+      form.append("item[description]", item.description);
+      form.append("item[value]", parseFloat(item.value) || 0);
+      if (item.category_id) form.append("item[category_id]", item.category_id);
+      if (foto) form.append("item[photo]", foto);
+
+      await api.post("/api/v1/items", form);
       setItem({ name: "", description: "", value: "", category_id: "" });
+      setFoto(null);
+      if (fotoInputRef.current) fotoInputRef.current.value = "";
       carregarTudo();
     } catch {
       setErro("Falha ao criar item. Confira os campos.");
@@ -107,7 +102,7 @@ export default function Dashboard() {
     <div className="app-shell">
       <header className="topbar">
         <div>
-          <strong>Cardapio Admin</strong>
+          <strong>Cardápio Admin</strong>
           <span className="muted"> - {admin?.email}</span>
         </div>
         <div className="topbar-actions">
@@ -127,7 +122,6 @@ export default function Dashboard() {
           <p className="muted">Carregando...</p>
         ) : (
           <div className="grid">
-            {/* -------------------- CATEGORIAS -------------------- */}
             <section className="card">
               <h2>Categorias</h2>
 
@@ -137,7 +131,6 @@ export default function Dashboard() {
                   onChange={(e) => setNovaCategoria(e.target.value)}
                   placeholder="Nome da categoria"
                 />
-                {/* FASE 1: sem debounce; clicar varias vezes dispara varias requisicoes. */}
                 <button type="submit">Adicionar</button>
               </form>
 
@@ -157,9 +150,8 @@ export default function Dashboard() {
               )}
             </section>
 
-            {/* -------------------- ITENS -------------------- */}
             <section className="card">
-              <h2>Itens do cardapio</h2>
+              <h2>Itens do cardápio</h2>
 
               <form className="stack-form" onSubmit={criarItem}>
                 <input
@@ -171,14 +163,14 @@ export default function Dashboard() {
                 <input
                   value={item.description}
                   onChange={(e) => setItem({ ...item, description: e.target.value })}
-                  placeholder="Descricao"
+                  placeholder="Descrição"
                 />
                 <input
                   type="number"
                   step="0.01"
                   value={item.value}
                   onChange={(e) => setItem({ ...item, value: e.target.value })}
-                  placeholder="Preco (ex: 29.90)"
+                  placeholder="Preço (ex: 29.90)"
                 />
                 <select
                   value={item.category_id}
@@ -191,6 +183,17 @@ export default function Dashboard() {
                     </option>
                   ))}
                 </select>
+                <label className="file-field">
+                  <span className="file-label">
+                    {foto ? `Foto: ${foto.name}` : "Foto do item (PNG/JPEG, opcional)"}
+                  </span>
+                  <input
+                    ref={fotoInputRef}
+                    type="file"
+                    accept="image/png,image/jpeg"
+                    onChange={(e) => setFoto(e.target.files?.[0] || null)}
+                  />
+                </label>
                 <button type="submit">Adicionar item</button>
               </form>
 
@@ -202,7 +205,7 @@ export default function Dashboard() {
                     <tr>
                       <th>Nome</th>
                       <th>Categoria</th>
-                      <th>Preco</th>
+                      <th>Preço</th>
                       <th></th>
                     </tr>
                   </thead>
