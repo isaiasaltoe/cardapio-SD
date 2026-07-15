@@ -1065,3 +1065,239 @@ Processing by Api::V1::ItemsController#destroy as JSON
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
 Completed 204 No Content in 2ms (ActiveRecord: 0.5ms (4 queries, 0 cached) | GC: 0.0ms)
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdmin Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdmin Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (2.1ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.620862"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "6abb9e0c-4e91-40ff-9c2d-3957c93246fc"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.620862"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.3ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.685163"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "47b32376-92e3-4735-b159-58a85fb35bb3"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.685163"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 2], ["created_at", "2026-07-15 01:16:09.686610"], ["name", "Outdoors & Toys"], ["updated_at", "2026-07-15 01:16:09.686610"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/v1/categories" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::CategoriesController#index as JSON
+  [1m[36mAdmin Load (0.7ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 1.4ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.4ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.728081"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "603273fc-1eca-4858-883c-8af5fa69ba7d"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.728081"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/categories" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::CategoriesController#create as JSON
+  Parameters: {"category" => {"name" => "Bebidas"}}
+  [1m[36mAdmin Load (0.4ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 3], ["created_at", "2026-07-15 01:16:09.730948"], ["name", "Bebidas"], ["updated_at", "2026-07-15 01:16:09.730948"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 2ms (Views: 0.1ms | ActiveRecord: 1.6ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.3ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.738424"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "ba9ae763-6356-477d-8029-ea3ad4c215e6"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.738424"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/categories" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::CategoriesController#create as JSON
+  Parameters: {"category" => {"name" => ""}}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+Completed 422 Unprocessable Content in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.4ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.744710"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "a0a9a508-5a1a-4033-8b20-ab86f555b93a"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.744710"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.6ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 5], ["created_at", "2026-07-15 01:16:09.745936"], ["name", "Sports"], ["updated_at", "2026-07-15 01:16:09.745936"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/v1/categories/3" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::CategoriesController#show as JSON
+  Parameters: {"id" => "3"}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.4ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.753920"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "1f0a24b3-fd2f-47bc-aa49-a06f2b555729"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.753920"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.6ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 6], ["created_at", "2026-07-15 01:16:09.755264"], ["name", "Games"], ["updated_at", "2026-07-15 01:16:09.755264"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PATCH "/api/v1/categories/4" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::CategoriesController#update as JSON
+  Parameters: {"category" => {"name" => "Sobremesas"}, "id" => "4"}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Update (0.7ms)[0m  [1m[33mUPDATE "categories" SET "name" = $1, "updated_at" = $2 WHERE "categories"."id" = $3[0m  [["name", "Sobremesas"], ["updated_at", "2026-07-15 01:16:09.758017"], ["id", 4]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.9ms (3 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (1.2ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.763065"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "bdd27328-65f1-488e-ab7e-f90382fa277f"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.763065"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 7], ["created_at", "2026-07-15 01:16:09.765773"], ["name", "Movies"], ["updated_at", "2026-07-15 01:16:09.765773"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/api/v1/categories/5" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::CategoriesController#destroy as JSON
+  Parameters: {"id" => "5"}
+  [1m[36mAdmin Load (0.4ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mItem Load (1.0ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."category_id" = $1[0m  [["category_id", 5]]
+  [1m[36mCategory Destroy (0.4ms)[0m  [1m[31mDELETE FROM "categories" WHERE "categories"."id" = $1[0m  [["id", 5]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 4ms (ActiveRecord: 2.6ms (4 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (1.9ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.777803"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "a13b1cdc-b475-4fcd-ac2d-639e683da5e1"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.777803"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 8], ["created_at", "2026-07-15 01:16:09.780698"], ["name", "Games & Outdoors"], ["updated_at", "2026-07-15 01:16:09.780698"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mItem Create (2.3ms)[0m  [1m[32mINSERT INTO "items" ("admin_id", "category_id", "created_at", "description", "name", "updated_at", "value") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["admin_id", 8], ["category_id", 6], ["created_at", "2026-07-15 01:16:09.782232"], ["description", "Fresh Norwegian salmon, lightly brushed with our herbed Dijon mustard sauce, with choice of two sides."], ["name", "Scotch Eggs"], ["updated_at", "2026-07-15 01:16:09.782232"], ["value", "67.69"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/v1/items" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::ItemsController#index as JSON
+  [1m[36mAdmin Load (0.6ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items"[0m
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 10.5ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.3ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.803659"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "48898dba-71f6-42fb-83f3-e3e907500ee2"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.803659"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 9], ["created_at", "2026-07-15 01:16:09.805296"], ["name", "Industrial, Sports & Tools"], ["updated_at", "2026-07-15 01:16:09.805296"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/items" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::ItemsController#create as JSON
+  Parameters: {"item" => {"name" => "Batata Frita", "description" => "Porção crocante", "value" => 13.5, "category_id" => 7}}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mItem Create (0.3ms)[0m  [1m[32mINSERT INTO "items" ("admin_id", "category_id", "created_at", "description", "name", "updated_at", "value") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["admin_id", 9], ["category_id", 7], ["created_at", "2026-07-15 01:16:09.808681"], ["description", "Porção crocante"], ["name", "Batata Frita"], ["updated_at", "2026-07-15 01:16:09.808681"], ["value", "13.5"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 3ms (Views: 0.1ms | ActiveRecord: 1.7ms (3 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.4ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.814303"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "ecf4153d-cb26-4212-859e-d1da41c550fa"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.814303"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/api/v1/items" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::ItemsController#create as JSON
+  Parameters: {"item" => {"name" => ""}}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+Completed 422 Unprocessable Content in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.4ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.823348"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "9157694e-929f-47e8-9f38-ba34ecff01fc"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.823348"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.6ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 11], ["created_at", "2026-07-15 01:16:09.824540"], ["name", "Outdoors"], ["updated_at", "2026-07-15 01:16:09.824540"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("admin_id", "category_id", "created_at", "description", "name", "updated_at", "value") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["admin_id", 11], ["category_id", 8], ["created_at", "2026-07-15 01:16:09.825816"], ["description", "Granny Smith apples mixed with brown sugar and butter filling, in a flaky all-butter crust, with ice cream."], ["name", "Salmon Nigiri"], ["updated_at", "2026-07-15 01:16:09.825816"], ["value", "59.81"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/v1/items/3" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::ItemsController#show as JSON
+  Parameters: {"id" => "3"}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.3ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.832741"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "d220c9c4-baa7-4fad-8607-9cc1e9885bd1"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.832741"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.6ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 12], ["created_at", "2026-07-15 01:16:09.833880"], ["name", "Computers, Health & Outdoors"], ["updated_at", "2026-07-15 01:16:09.833880"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("admin_id", "category_id", "created_at", "description", "name", "updated_at", "value") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["admin_id", 12], ["category_id", 9], ["created_at", "2026-07-15 01:16:09.835042"], ["description", "Three eggs with cilantro, tomatoes, onions, avocados and melted Emmental cheese. With a side of roasted potatoes, and your choice of toast or croissant."], ["name", "French Fries with Sausages"], ["updated_at", "2026-07-15 01:16:09.835042"], ["value", "19.82"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PATCH "/api/v1/items/4" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::ItemsController#update as JSON
+  Parameters: {"item" => {"name" => "Batata Frita Especial", "value" => 18.9}, "id" => "4"}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "Item"], ["name", "photo"], ["LIMIT", 1]]
+  [1m[36mItem Update (0.3ms)[0m  [1m[33mUPDATE "items" SET "name" = $1, "updated_at" = $2, "value" = $3 WHERE "items"."id" = $4[0m  [["name", "Batata Frita Especial"], ["updated_at", "2026-07-15 01:16:09.839177"], ["value", "18.9"], ["id", 4]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 2.5ms (4 queries, 0 cached) | GC: 0.1ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAdmin Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = $1 LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (0.4ms)[0m  [1m[32mINSERT INTO "admins" ("created_at", "email", "encrypted_password", "jti", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", "2026-07-15 01:16:09.845763"], ["email", "[FILTERED]"], ["encrypted_password", "[FILTERED]"], ["jti", "9dbb39d3-b42b-4a53-819e-ef17d3586d56"], ["remember_created_at", nil], ["reset_password_sent_at", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["updated_at", "2026-07-15 01:16:09.845763"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("admin_id", "created_at", "name", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["admin_id", 13], ["created_at", "2026-07-15 01:16:09.846973"], ["name", "Automotive"], ["updated_at", "2026-07-15 01:16:09.846973"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("admin_id", "category_id", "created_at", "description", "name", "updated_at", "value") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["admin_id", 13], ["category_id", 10], ["created_at", "2026-07-15 01:16:09.848365"], ["description", "Breaded fried chicken with waffles. Served with maple syrup."], ["name", "Salmon Nigiri"], ["updated_at", "2026-07-15 01:16:09.848365"], ["value", "8.12"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/api/v1/items/5" for 127.0.0.1 at 2026-07-14 22:16:09 -0300
+Processing by Api::V1::ItemsController#destroy as JSON
+  Parameters: {"id" => "5"}
+  [1m[36mAdmin Load (0.3ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "Item"], ["name", "photo"], ["LIMIT", 1]]
+  [1m[36mItem Destroy (0.3ms)[0m  [1m[31mDELETE FROM "items" WHERE "items"."id" = $1[0m  [["id", 5]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 3ms (ActiveRecord: 2.1ms (4 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
