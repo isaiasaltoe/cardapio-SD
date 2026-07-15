@@ -1,4 +1,4 @@
-﻿apiVersion: chaos-mesh.org/v1alpha1
+apiVersion: chaos-mesh.org/v1alpha1
 kind: StressChaos
 metadata:
   name: stress-api
@@ -12,9 +12,9 @@ spec:
       app: api
   stressors:
     cpu:
-      workers: 2
-      load: 80
+      workers: 4
+      load: 100
     memory:
-      workers: 1
-      size: "256MB"
+      workers: 2
+      size: "512MB"
   duration: "60s"
