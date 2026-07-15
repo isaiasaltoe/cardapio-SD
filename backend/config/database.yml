@@ -94,7 +94,8 @@ production:
   primary: &primary_production
     <<: *default
     database: backend_production
-    username: backend
+    host: <%= ENV.fetch("DB_HOST", "postgres") %>
+    username: <%= ENV.fetch("DB_USER", "postgres") %>
     password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
