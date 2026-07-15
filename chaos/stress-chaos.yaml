@@ -1,0 +1,20 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: stress-api
+  namespace: cardapio
+spec:
+  mode: all
+  selector:
+    namespaces:
+      - cardapio
+    labelSelectors:
+      app: api
+  stressors:
+    cpu:
+      workers: 4
+      load: 100
+    memory:
+      workers: 2
+      size: "512MB"
+  duration: "60s"

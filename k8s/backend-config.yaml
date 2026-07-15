@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: cardapio
+data:
+  RAILS_ENV: "production"
+  DB_HOST: "postgres"
+  DB_USER: "postgres"
+  DB_NAME: "cardapio_production"
+  RAILS_SERVE_STATIC_FILES: "true"
+  RAILS_LOG_TO_STDOUT: "true"
