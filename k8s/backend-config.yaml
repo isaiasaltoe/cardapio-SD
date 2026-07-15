@@ -10,3 +10,6 @@ data:
   DB_NAME: "cardapio_production"
   RAILS_SERVE_STATIC_FILES: "true"
   RAILS_LOG_TO_STDOUT: "true"
+  PGHOST: "postgres"
+  PGUSER: "postgres"
+  PGPASSWORD: "password"
