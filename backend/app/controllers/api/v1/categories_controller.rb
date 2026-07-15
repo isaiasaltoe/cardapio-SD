@@ -1,5 +1,5 @@
 class Api::V1::CategoriesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: %i[index show]
   before_action :set_category, only: %i[ show update destroy ]
 
   # GET /api/v1/categories

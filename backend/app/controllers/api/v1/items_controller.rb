@@ -1,17 +1,17 @@
 class Api::V1::ItemsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: %i[index show]
   before_action :set_item, only: %i[ show update destroy ]
 
   # GET /api/v1/items
   def index
-    @items = Item.all
+    @items = Item.all.with_attached_photo
 
-    render json: @items
+    render json: @items.map { |item| format_item(item) }
   end
 
   # GET /api/v1/items/1
   def show
-    render json: @item
+    render json: format_item(@item)
   end
 
   # POST /api/v1/items
@@ -20,7 +20,7 @@ class Api::V1::ItemsController < ApplicationController
     @item.admin = current_admin
 
     if @item.save
-      render json: @item, status: :created, location: api_v1_item_url(@item)
+      render json: format_item(@item), status: :created, location: api_v1_item_url(@item)
     else
       render json: @item.errors, status: :unprocessable_content
     end
@@ -29,7 +29,7 @@ class Api::V1::ItemsController < ApplicationController
   # PATCH/PUT /api/v1/items/1
   def update
     if @item.update(item_params)
-      render json: @item
+      render json: format_item(@item)
     else
       render json: @item.errors, status: :unprocessable_content
     end
@@ -41,6 +41,12 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   private
+    def format_item(item)
+      item.as_json.merge(
+        photo_url: item.photo.attached? ? url_for(item.photo) : nil
+      )
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params.expect(:id))
