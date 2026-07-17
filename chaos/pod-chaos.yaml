@@ -11,4 +11,3 @@ spec:
       - cardapio
     labelSelectors:
       app: api
-  duration: "30s"
