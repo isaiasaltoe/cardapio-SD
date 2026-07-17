@@ -12,7 +12,7 @@ spec:
     labelSelectors:
       app: api
   delay:
-    latency: "500ms"
+    latency: "3000ms"
     correlation: "100"
     jitter: "0ms"
-  duration: "60s"
+  duration: "120s"
