@@ -92,9 +92,13 @@ export default function Dashboard() {
       if (item.photo) formData.append("item[photo]", item.photo);
 
       if (editandoItemId) {
-        await api.put(`/api/v1/items/${editandoItemId}`, formData);
+        await api.put(`/api/v1/items/${editandoItemId}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       } else {
-        await api.post("/api/v1/items", formData);
+        await api.post("/api/v1/items", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       }
 
       setItem({ name: "", description: "", value: "", category_id: "", photo: null });
