@@ -13,7 +13,7 @@ A nossa aplicação base é um **Cardápio Digital** composto por 3 microsservi�
 
 ---
 
-## 🚀 Como Clonar o Projeto
+## Como Clonar o Projeto
 Para obter uma cópia local deste repositório, execute os comandos no terminal:
 ```bash
 git clone https://github.com/isaiasaltoe/trabalho-SD.git
@@ -54,7 +54,7 @@ npm run dev
 
 ---
 
-## 🌪️ Opção 2: Rodando para a Avaliação (Kubernetes + Chaos Mesh)
+##  Opção 2: Rodando para a Avaliação (Kubernetes + Chaos Mesh)
 *Obrigatório para a execução dos testes de tolerância a falhas do trabalho prático.*
 
 Para que o Chaos Mesh funcione e consiga atacar a aplicação, o projeto precisa rodar orquestrado pelo **Minikube** na sua máquina local. 
@@ -103,7 +103,7 @@ kubectl port-forward svc/chaos-dashboard 2333:2333 -n chaos-mesh
 
 ---
 
-## 📉 Experimentos de Caos (Demonstração Prática)
+##  Experimentos de Caos (Demonstração Prática)
 
 Com o cluster rodando (Opção 2), você pode testar a resiliência do sistema aplicando os seguintes ataques. A nossa arquitetura foi projetada com **Timeouts, Retries, Limites de Recursos, HPA (Auto-Scaling) e Fallback de Cache** para suportar todos os 3 testes abaixo sem deixar o usuário offline.
 
